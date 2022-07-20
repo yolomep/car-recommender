@@ -1,3 +1,5 @@
+import "package:csv/csv.dart";
+
 class Car {
   int? _cid;
   String? _make;
@@ -96,6 +98,10 @@ class Car {
       this._paidRating,
       this._reliableRating,
       this._photo);
+
+  Car.fromCSV(String csv) {
+
+  }
 
 
 }
