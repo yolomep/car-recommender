@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+
 
 void main() {
   runApp(MyApp());
@@ -36,6 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0.0,
         toolbarHeight: 70,
         title: Text("Custom App Bar"),
+        actions: [
+          IconButton(
+            icon: Icon(FontAwesomeIcons.car),
+            onPressed: () {
+              print("add button pressed");
+            },
+          ),
+        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),bottomRight: Radius.circular(40), topLeft: Radius.circular(40), topRight: Radius.circular(40)) ,
