@@ -9,7 +9,6 @@ class Car {
   String? _transmission;
   int? _doors;
   String? _submodel;
-  int? _msrp;
   double? _paidRating;
   double? _reliableRating;
   String? _photo;
@@ -62,12 +61,6 @@ class Car {
     _submodel = submodel;
   }
 
-  int? get msrp => _msrp;
-
-  set msrp(int? msrp) {
-    _msrp = msrp;
-  }
-
   double? get paidRating => _paidRating;
 
   set paidRating(double? paidRating) {
@@ -94,14 +87,20 @@ class Car {
       this._transmission,
       this._doors,
       this._submodel,
-      this._msrp,
       this._paidRating,
       this._reliableRating,
       this._photo);
 
-  Car.fromCSV(String csv) {
-
+  Car.fromCSV(List<dynamic> vals) {
+    cid = vals[0];
+    make = vals[1];
+    year = vals[2];
+    mpg = vals[3];
+    transmission = vals[4];
+    doors = vals[5];
+    submodel = vals[6];
+    paidRating = vals[7];
+    reliableRating = vals[8];
+    photo = vals[9];
   }
-
-
 }
