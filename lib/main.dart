@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:csv/csv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  List<String> makeOptions = [], modelOptions = [], yearOptions = [], transmissionOptions = [];
+  List<String> _makeOptions = [], _modelOptions = [], _yearOptions = [], _transmissionOptions = [];
 
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
@@ -46,19 +46,19 @@ class _MyHomePageState extends State<MyHomePage> {
     return [File('$path/make.csv'), File('$path/model.csv'), File('$path/year.csv')];
   }
 
-  Future<List<List<String>>> readData() async {
+  Future<List<String>> readData() async {
     try {
       final files = await _getData;
 
-      List<List<String>> options = [];
+      List<String> options = [];
       for(File f in files) {
-        options.add(await f.readAsLines());
+        options.add(await f.readAsString());
       }
 
       return options;
     } catch (e) {
       print("No data found");
-      showDialog(
+      showDialog(E
         context: context,
         builder: (context)
       {
@@ -84,8 +84,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    readData().then((options) => {
 
+    readData().then((options) {
+      setState(() {
+        _makeOptions = (const CsvToListConverter().convert(options[0])).map((make) => make[1] as String).toList();
+        _modelOptions = (const CsvToListConverter().convert(options[1])).map((model) => model[2] as String).toList();
+        _yearOptions = (const CsvToListConverter().convert(options[2])).map((year) => year[1] as String).toList();
+      });
     });
   }
 
