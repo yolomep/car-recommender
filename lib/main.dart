@@ -146,47 +146,92 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             DisplayText("Todays price of ${dropdownValue} gasoline"),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 50.0, right: 50.0),
-              padding: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: Color(0xFFD9D9D9),
-                borderRadius: BorderRadius.circular(90),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-              ),
 
-              child: Text(
-                "advanced",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              ),
+            Container(
+              margin: const EdgeInsets.only(left: 50.0, right: 50.0,top: 10.0,bottom: 10.0),
+                decoration: BoxDecoration(
+                  color:  Color(0xFFD9D9D9),
+                  borderRadius: BorderRadius.circular(90),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                ),
+              child:
+                TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                  ),
+                  child: const Text(
+                    'advanced',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                )
             ),
             Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 50.0, right: 50.0),
-              padding: const EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                color: Color(0xFF2AD02A),
-                borderRadius: BorderRadius.circular(90),
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
+                margin: const EdgeInsets.only(left: 50.0, right: 50.0,top: 10.0,bottom: 10.0),
+                decoration: BoxDecoration(
+                  color:  Color(0xFF2AD02A),
+                  borderRadius: BorderRadius.circular(90),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
                 ),
-              ),
+                child:
+                TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    primary: Colors.black,
+                  ),
+                  child: const Text(
+                    'submit',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                )
+            )
+            // Container(
+            //     alignment: Alignment.center,
+            //     margin: const EdgeInsets.only(left: 50.0, right: 50.0,top: 10.0,bottom: 10.0),
+            //     padding: const EdgeInsets.all(10.0),
+            //     decoration: BoxDecoration(
+            //       color: Color(0xFF2AD02A),
+            //       borderRadius: BorderRadius.circular(90),
+            //     ),
+            //
+            //     child: ElevatedButton(
+            //       onPressed: () {},
+            //       child: Text(
+            //           'submit',
+            //           style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)
+            //
+            //       ),
+            //       padding: EdgeInsets.only(left: 50, right:50),
+            //     )),
 
-              child: Text(
-                "submit",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              ),
-            ),
 
-
-
+            // Container(
+            //   alignment: Alignment.center,
+            //   margin: const EdgeInsets.only(left: 50.0, right: 50.0,top: 10.0,bottom: 10.0),
+            //   padding: const EdgeInsets.all(10.0),
+            //   decoration: BoxDecoration(
+            //     color: Color(0xFF2AD02A),
+            //     borderRadius: BorderRadius.circular(90),
+            //     border: Border.all(
+            //       color: Colors.black,
+            //       width: 1,
+            //     ),
+            //   ),
+            //
+            //   child: Text(
+            //     "submit",
+            //     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            //   ),
+            // ),
           ],
         ),
+
       ),
     );
   }
