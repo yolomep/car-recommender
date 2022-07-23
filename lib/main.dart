@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
 import 'package:csv/csv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
+import 'package:flutter/services.dart' show rootBundle;
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
@@ -36,29 +37,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<String> _makeOptions = [], _modelOptions = [], _yearOptions = [], _transmissionOptions = [];
 
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
 
-  Future<List<File>> get _getData async {
-    final path = await _localPath;
-    return [File('$path/make.csv'), File('$path/model.csv'), File('$path/year.csv')];
+  Future<String> loadAsset(String fileName) async {
+    return await rootBundle.loadString('data/$fileName');
   }
 
   Future<List<String>> readData() async {
     try {
-      final files = await _getData;
+      final fileNames = ['make.csv', 'model.csv', 'year.csv'];
 
       List<String> options = [];
-      for(File f in files) {
-        options.add(await f.readAsString());
+      for(String name in fileNames) {
+        options.add(await loadAsset(name));
       }
 
       return options;
     } catch (e) {
-      print("No data found");
-      showDialog(E
+      showDialog(
         context: context,
         builder: (context)
       {
@@ -90,6 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
         _makeOptions = (const CsvToListConverter().convert(options[0])).map((make) => make[1] as String).toList();
         _modelOptions = (const CsvToListConverter().convert(options[1])).map((model) => model[2] as String).toList();
         _yearOptions = (const CsvToListConverter().convert(options[2])).map((year) => year[1] as String).toList();
+        // _makeOptions.insert(0, "no preference");
+        // _modelOptions.insert(0, "no preference");
+        // _yearOptions.insert(0, "no preference");
       });
     });
   }
