@@ -113,37 +113,38 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                   DropdownButton<String>(
-                     icon: Icon(
-                       Icons.keyboard_arrow_down,
-                       color: Colors.black, // <-- SEE HERE
-                       size: 35.0,
-                     ),
-                    value: dropdownValue,
-                    dropdownColor: Color(0xFFDBF24B),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFD9D9D9),
                     ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                        pricePerGallon = gasPricesMap[dropdownValue] ?? 0.0;
-                      });
-                    },
-                    items: gasPricesMap.keys
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
+                    child: DropdownButton<String>(
+                      value: dropdownValue,
+                      dropdownColor:Color(0xFFDBF24B) ,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: Colors.black,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                          pricePerGallon = gasPricesMap[dropdownValue] ?? 0.0;
+                        });
+                      },
+                      items: gasPricesMap.keys
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                          ),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ],),
-              ),
-
-
+            ],),
+            ),
 
             DisplayText("Todays price of ${dropdownValue} gasoline"),
             Container(
@@ -182,6 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
             ),
+
 
 
           ],
