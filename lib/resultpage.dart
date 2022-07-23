@@ -131,34 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],),
 
 
-            // Container(
-            //   decoration: BoxDecoration(
-            //     color:  Color(0xFFFF0000),
-            //     borderRadius: BorderRadius.circular(90),
-            //
-            //    child:Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //
-            //          IconButton(
-            //             onPressed: () {
-            //
-            //
-            //             },
-            //             icon: Icon(FontAwesomeIcons.circleChevronLeft,
-            //                  size: 50.0,)
-            //
-            //         ),
-            //
-            //         IconButton(
-            //             onPressed: () {
-            //
-            //             },
-            //             icon: Icon(FontAwesomeIcons.circleChevronRight,size: 50.0,)),
-            //
-            //     ],
-            //   ),
-            // ),),
+
             Column(
               children: [
                 Container(
@@ -172,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
                   // padding: const EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 17),
                   decoration: BoxDecoration(
-                    color: Colors.grey,
+                    color: Color(0xFFD9D9D9),
                     borderRadius: BorderRadius.circular(180)
                   ),
                   child: Row(
