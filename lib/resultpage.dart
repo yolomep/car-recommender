@@ -22,6 +22,8 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
 
+
+
             Container(
               alignment: Alignment.center,
               margin: const EdgeInsets.only(left: 20.0, right: 20.0,top: 40.0,bottom: 10.0),
@@ -129,31 +131,69 @@ class _MyHomePageState extends State<MyHomePage> {
               ],),
 
 
-            Container(
-              margin: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+            // Container(
+            //   decoration: BoxDecoration(
+            //     color:  Color(0xFFFF0000),
+            //     borderRadius: BorderRadius.circular(90),
+            //
+            //    child:Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //     children: [
+            //
+            //          IconButton(
+            //             onPressed: () {
+            //
+            //
+            //             },
+            //             icon: Icon(FontAwesomeIcons.circleChevronLeft,
+            //                  size: 50.0,)
+            //
+            //         ),
+            //
+            //         IconButton(
+            //             onPressed: () {
+            //
+            //             },
+            //             icon: Icon(FontAwesomeIcons.circleChevronRight,size: 50.0,)),
+            //
+            //     ],
+            //   ),
+            // ),),
+            Column(
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.only(left: 120.0, right: 120.0,top: 10.0,bottom: 5.0),
+                  padding: const EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 17),
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(180),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                          onPressed: () {
 
-                     IconButton(
-                        onPressed: () {
+
+                          },
+                          icon: Icon(FontAwesomeIcons.circleChevronLeft,
+                            size: 50.0,)
+
+                      ),
+                      IconButton(
+                          onPressed: () {
 
 
-                        },
-                        icon: Icon(FontAwesomeIcons.circleChevronLeft,
-                             size: 50.0,)
+                          },
+                          icon: Icon(FontAwesomeIcons.circleChevronRight,
+                            size: 50.0,)
 
-                    ),
-
-                    IconButton(
-                        onPressed: () {
-
-                        },
-                        icon: Icon(FontAwesomeIcons.circleChevronRight,size: 50.0,)),
-
-                ],
-              ),
-            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],),
             Container(
                 margin: const EdgeInsets.only(left: 50.0, right: 50.0,top: 10.0,bottom: 10.0),
                 decoration: BoxDecoration(
@@ -164,6 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     width: 1,
                   ),
                 ),
+
                 child:
                 TextButton(
                   onPressed: () {},
@@ -178,6 +219,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
                 )
             ),
+
+
 
           ],
         ),
