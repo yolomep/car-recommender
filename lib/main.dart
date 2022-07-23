@@ -83,8 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 30.0, right: 30.0),
-              padding: const EdgeInsets.all(18.0),
+              margin: const EdgeInsets.only(left: 30.0, right: 30.0,top: 10.0,bottom: 10.0),
+              padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 color: Color(0xFF2AD07D),
                 borderRadius: BorderRadius.circular(90),
@@ -100,7 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-
                       Text(
                         "Make",
                         textAlign: TextAlign.center,
