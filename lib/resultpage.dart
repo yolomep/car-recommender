@@ -164,18 +164,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 Container(
                   alignment: Alignment.center,
                   margin: const EdgeInsets.only(left: 120.0, right: 120.0,top: 10.0,bottom: 5.0),
-                  padding: const EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 17),
+              padding: EdgeInsetsDirectional.fromSTEB(
+                0.0,
+                0.0,
+                10.0,
+                18.0,
+              ),
+                  // padding: const EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 17),
                   decoration: BoxDecoration(
                     color: Colors.grey,
-                    borderRadius: BorderRadius.circular(180),
+                    borderRadius: BorderRadius.circular(180)
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       IconButton(
                           onPressed: () {
-
-
                           },
                           icon: Icon(FontAwesomeIcons.circleChevronLeft,
                             size: 50.0,)
