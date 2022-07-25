@@ -1,3 +1,4 @@
+import 'package:car_recommender/recommender/Car.dart';
 import 'package:car_recommender/screens/AdvancedScreen.dart';
 import 'package:car_recommender/screens/ResultsScreen.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
+      //not needed
       routes: {
         // When navigating to the "/second" route, build the SecondScreen widget.
-        AdvancedScreen.routeName: (context) => AdvancedScreen(),
-        ResultsScreen.routeName: (context) => ResultsScreen(),
+        AdvancedScreen.routeName: (context) => AdvancedScreen(Car.fromData()),
+        ResultsScreen.routeName: (context) => ResultsScreen(Car.fromData()),
       },
     );
   }

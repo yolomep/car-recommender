@@ -14,10 +14,11 @@ class Car {
   double? _reliableRating;
   String? _photo;
   int? _price;
+  RangeValues _priceRange = RangeValues(100, 1000);
 
   int? get cid => _cid;
 
-  RangeValues get priceRange => null;
+  RangeValues get priceRange => _priceRange;
 
   set cid(int? cid) {
     _cid = cid;
@@ -118,15 +119,24 @@ class Car {
   }
 
   Car.fromData({
-    make, model, year, mpgHighway, mpgCity, transmission, price, priceRange, rating
+    make="Acura", model="no preference", year=2020, mpgHighway=const RangeValues(10, 40), mpgCity=const RangeValues(10, 30), transmission="Auto", price=100, priceRange=const RangeValues(0, 100),
+    rating="F-"
   }){
     _cid = 0;
     _make = make;
     _model = model;
-    _year = year;
+    if(year == "any year"){
+      _year = 2020; //idk
+    }
+    else {
+      _year = year;
+    }
     _mpg = Mpg(mpgHighway, mpgCity);
     _transmission = transmission;
     _paidRating = rating;
+    _priceRange = priceRange;
+    _price = price;
+    }
 
   }
 }
