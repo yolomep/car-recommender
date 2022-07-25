@@ -15,7 +15,10 @@ class Car {
   double? _reliableRating;
   String? _photo;
   int? _price;
+  String? _name;
   RangeValues _priceRange = RangeValues(100, 1000);
+
+  String? get name => _name;
 
   int? get cid => _cid;
 
@@ -105,21 +108,24 @@ class Car {
       this._photo);
 
   Car.fromCSV(List<dynamic> vals) {
-    List<String> mpgs = (vals[3] as String).replaceAll(RegExp(r'[A-Za-z]+'),'').split(";");
+    //cid, name, make, model, year, mpg, transmission, doors, submodel, msrp, rating, con r, photo
+    List<String> mpgs = (vals[5] as String).replaceAll(RegExp(r'[A-Za-z]+'),'').split(";");
     cid = vals[0];
-    make = vals[1];
-    model = vals[2];
-    year = vals[2];
+    _name = vals[1];
+    make = vals[2];
+    model = vals[3];
+    year = vals[4];
     if(mpgs[0] != "")
       mpg = Mpg(int.parse(mpgs[0]), int.parse(mpgs[1]));
     else
       mpg = Mpg(10, 10);
-    transmission = vals[4];
-    doors = vals[5];
-    submodel = vals[6];
-    paidRating = vals[7];
-    reliableRating = vals[8];
-    photo = vals[9];
+    transmission = vals[6];
+    doors = vals[7];
+    submodel = vals[8];
+    price = vals[9];
+    paidRating = vals[10];
+    reliableRating = vals[11];
+    photo = vals[12];
   }
 
   Car.fromData({

@@ -30,8 +30,8 @@ class _ResultsScreenState extends State<ResultsScreen> {
           context: context,
           builder: (context) {
             return AlertDialog(
-              // Retrieve the text the that user has entered by using the
-              // TextEditingController.
+                // Retrieve the text the that user has entered by using the
+                // TextEditingController.
 
                 title: Text("Error!"),
                 content: Text(
@@ -55,10 +55,11 @@ class _ResultsScreenState extends State<ResultsScreen> {
 
     readData().then((options) {
       setState(() {
-        for(String line in options.split("\n")) {
+        for (String line in options.split("\n")) {
           allCars.add(Car.fromCSV(line.split(",")));
         }
-        allCars.sort((a, b) => b.getScore(widget.data) - a.getScore(widget.data));
+        allCars
+            .sort((a, b) => b.getScore(widget.data) - a.getScore(widget.data));
         currentCar = allCars[currentIndex];
       });
     });
@@ -111,9 +112,8 @@ class _ResultsScreenState extends State<ResultsScreen> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.all(10),
-                    child: Image.network(currentCar.photo!)
-                  ),
+                      margin: EdgeInsets.all(10),
+                      child: Image.network(currentCar.photo!)),
                 ],
               ),
             ),
@@ -128,6 +128,10 @@ class _ResultsScreenState extends State<ResultsScreen> {
                   ),
                   child: Column(
                     children: [
+                      Container(margin: const EdgeInsets.all(5.0)),
+                      Text(
+                          "Full Name: ${currentCar.name}",
+                          style: TextStyle(fontSize: 20.0, color: Colors.white)),
                       Container(margin: const EdgeInsets.all(5.0)),
                       Text(
                         "Make: ${currentCar.make}",
@@ -158,12 +162,13 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         margin: const EdgeInsets.all(5.0),
                       ),
                       InkWell(
-                        child: Text(
-                        "Website Link: https://www.kbb.com/${currentCar.make}/${currentCar.model}/",
-                        style: TextStyle(fontSize: 20.0, color: Colors.white),
-                        ),
-                          onTap: () => launchUrl(Uri.https("www.kbb.com", "${currentCar.make}/${currentCar.model}"))
-                      ),
+                          child: Text(
+                            "Website Link: https://www.kbb.com/${currentCar.make}/${currentCar.model}/",
+                            style:
+                                TextStyle(fontSize: 20.0, color: Colors.white),
+                          ),
+                          onTap: () => launchUrl(Uri.https("www.kbb.com",
+                              "${currentCar.make}/${currentCar.model}"))),
                     ],
                   ),
                 ),
@@ -191,11 +196,10 @@ class _ResultsScreenState extends State<ResultsScreen> {
                       IconButton(
                           onPressed: () {
                             setState(() {
-                              if(currentIndex != 0) {
+                              if (currentIndex != 0) {
                                 currentIndex--;
                                 currentCar = allCars[currentIndex];
                               }
-
                             });
                           },
                           icon: Icon(
@@ -205,11 +209,10 @@ class _ResultsScreenState extends State<ResultsScreen> {
                       IconButton(
                           onPressed: () {
                             setState(() {
-                              if(currentIndex != 5) {
+                              if (currentIndex != 5) {
                                 currentIndex++;
                                 currentCar = allCars[currentIndex];
                               }
-
                             });
                           },
                           icon: Icon(
