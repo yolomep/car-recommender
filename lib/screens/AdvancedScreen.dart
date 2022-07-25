@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:car_recommender/recommender/Car.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';

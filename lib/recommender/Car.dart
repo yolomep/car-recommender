@@ -1,11 +1,12 @@
 import "package:car_recommender/recommender/Mpg.dart";
 import 'package:flutter/src/material/slider_theme.dart';
+import "dart:math";
 
 class Car {
   int? _cid;
   String? _make;
   String? _model;
-  int? _year;
+  String? _year;
   Mpg? _mpg;
   String? _transmission;
   int? _doors;
@@ -36,9 +37,9 @@ class Car {
     _model = model;
   }
 
-  int? get year => _year;
+  String? get year => _year;
 
-  set year(int? year) {
+  set year(String? year) {
     _year = year;
   }
 
@@ -109,7 +110,10 @@ class Car {
     make = vals[1];
     model = vals[2];
     year = vals[2];
-    mpg = Mpg(int.parse(mpgs[0]), int.parse(mpgs[1]));
+    if(mpgs[0] != "")
+      mpg = Mpg(int.parse(mpgs[0]), int.parse(mpgs[1]));
+    else
+      mpg = Mpg(10, 10);
     transmission = vals[4];
     doors = vals[5];
     submodel = vals[6];
@@ -119,24 +123,34 @@ class Car {
   }
 
   Car.fromData({
-    make="Acura", model="no preference", year=2020, mpgHighway=const RangeValues(10, 40), mpgCity=const RangeValues(10, 30), transmission="Auto", price=100, priceRange=const RangeValues(0, 100),
+    make="Acura", model="no preference", year="any year", mpgHighway=const RangeValues(10, 40), mpgCity=const RangeValues(10, 30), transmission="Auto", price=100, priceRange=const RangeValues(0, 100),
     rating="F-"
   }){
     _cid = 0;
     _make = make;
     _model = model;
-    if(year == "any year"){
-      _year = 2020; //idk
-    }
-    else {
-      _year = year;
-    }
-    _mpg = Mpg(mpgHighway, mpgCity);
+    _year = year;
+    _mpg = Mpg.fromRange(mpgHighway, mpgCity);
     _transmission = transmission;
     _paidRating = rating;
     _priceRange = priceRange;
     _price = price;
-    }
 
   }
+
+  int getScore(Car target) {
+    //higher scores means a closer match?
+    int score = 0;
+    if(target.make != "no preference" && _make == target.make) score += 100;
+    if(target.model != "no preference" && _model == target.model) score += 200;
+    score -= ((min((price! - target.priceRange.start.round()).abs(), (price! - target.priceRange.end.round()).abs()))/1000).round();
+    if(_transmission == target._transmission) score += 150;
+    score -= min((_mpg!.highway - target.mpg!.highwayRange.start.round()).abs(), (_mpg!.highway - target.mpg!.highwayRange.end.round()).abs());
+    score -= min((_mpg!.city - target.mpg!.cityRange.start.round()).abs(), (_mpg!.city - target.mpg!.cityRange.end.round()).abs());
+    if(_paidRating == target.paidRating) score += 100;
+    if(target.year != "any year" && _year == target.year) score += 50;
+    return score;
+  }
+
+
 }

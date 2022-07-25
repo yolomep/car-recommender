@@ -17,6 +17,8 @@ class ResultsScreen extends StatefulWidget {
 }
 
 class _ResultsScreenState extends State<ResultsScreen> {
+  List<Car> allCars = [];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,11 +28,12 @@ class _ResultsScreenState extends State<ResultsScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-
             Container(
               alignment: Alignment.center,
-              margin: const EdgeInsets.only(left: 20.0, right: 20.0,top: 40.0,bottom: 10.0),
-              padding: const EdgeInsets.only(left: 5.0, right: 5.0,top: 0,bottom: 5.0),
+              margin: const EdgeInsets.only(
+                  left: 20.0, right: 20.0, top: 40.0, bottom: 10.0),
+              padding: const EdgeInsets.only(
+                  left: 5.0, right: 5.0, top: 0, bottom: 5.0),
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(45),
@@ -39,8 +42,10 @@ class _ResultsScreenState extends State<ResultsScreen> {
                 children: [
                   Container(
                     alignment: Alignment.center,
-                    margin: const EdgeInsets.only(left: 30.0, right: 30.0,top: 0,bottom: 5.0),
-                    padding: const EdgeInsets.only(left: 5.0, right: 5.0,top: 5,bottom: 5.0),
+                    margin: const EdgeInsets.only(
+                        left: 30.0, right: 30.0, top: 0, bottom: 5.0),
+                    padding: const EdgeInsets.only(
+                        left: 5.0, right: 5.0, top: 5, bottom: 5.0),
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(90),
@@ -54,8 +59,8 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         ),
                         Text(
                           "Car Found",
-                          style:
-                          TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -68,78 +73,64 @@ class _ResultsScreenState extends State<ResultsScreen> {
                       size: 250.0,
                     ),
                   ),
-                ],),
+                ],
+              ),
             ),
-
-
             Column(
               children: [
                 Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.only(left: 5.0, right: 5.0,top: 5,bottom: 5.0),
+                  padding: const EdgeInsets.only(
+                      left: 5.0, right: 5.0, top: 5, bottom: 5.0),
                   decoration: BoxDecoration(
                     color: Colors.black,
                   ),
                   child: Column(
-
                     children: [
-
-                      Container(
-                          margin: const EdgeInsets.all(5.0)
-                      ),
+                      Container(margin: const EdgeInsets.all(5.0)),
                       Text(
                         "Make:",
-                        style:
-                        TextStyle(fontSize: 20.0, color: Colors.white),
-
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
-
                       Container(
                         margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
                         "Model:",
-                        style:
-                        TextStyle(fontSize: 20.0 ,color: Colors.white),
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       Container(
                         margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
                         "Year:",
-                        style:
-                        TextStyle(fontSize: 20.0,color: Colors.white),
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       Container(
                         margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
                         "Rating:",
-                        style:
-                        TextStyle(fontSize: 20.0,color: Colors.white),
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       Container(
-                        margin  : const EdgeInsets.all(5.0),
+                        margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
                         "Website Link:",
-                        style:
-                        TextStyle(fontSize: 20.0,color: Colors.white),
+                        style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                     ],
                   ),
                 ),
-
-
-              ],),
-
-
-
+              ],
+            ),
             Column(
               children: [
                 Container(
                   alignment: Alignment.center,
-                  margin: const EdgeInsets.only(left: 120.0, right: 120.0,top: 10.0,bottom: 5.0),
+                  margin: const EdgeInsets.only(
+                      left: 120.0, right: 120.0, top: 10.0, bottom: 5.0),
                   padding: EdgeInsetsDirectional.fromSTEB(
                     0.0,
                     0.0,
@@ -149,66 +140,53 @@ class _ResultsScreenState extends State<ResultsScreen> {
                   // padding: const EdgeInsets.only(left: 0.0, right: 0.0,top: 0.0,bottom: 17),
                   decoration: BoxDecoration(
                       color: Color(0xFFD9D9D9),
-                      borderRadius: BorderRadius.circular(180)
-                  ),
+                      borderRadius: BorderRadius.circular(180)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       IconButton(
-                          onPressed: () {
-                          },
-                          icon: Icon(FontAwesomeIcons.circleChevronLeft,
-                            size: 50.0,)
-
-                      ),
+                          onPressed: () {},
+                          icon: Icon(
+                            FontAwesomeIcons.circleChevronLeft,
+                            size: 50.0,
+                          )),
                       IconButton(
-                          onPressed: () {
-
-
-                          },
-                          icon: Icon(FontAwesomeIcons.circleChevronRight,
-                            size: 50.0,)
-
-                      ),
+                          onPressed: () {},
+                          icon: Icon(
+                            FontAwesomeIcons.circleChevronRight,
+                            size: 50.0,
+                          )),
                     ],
                   ),
                 ),
-              ],),
+              ],
+            ),
             Container(
-                margin: const EdgeInsets.only(left: 50.0, right: 50.0,top: 10.0,bottom: 10.0),
+                margin: const EdgeInsets.only(
+                    left: 50.0, right: 50.0, top: 10.0, bottom: 10.0),
                 decoration: BoxDecoration(
-                  color:  Color(0xFFFF0000),
+                  color: Color(0xFFFF0000),
                   borderRadius: BorderRadius.circular(90),
                   border: Border.all(
                     color: Colors.black,
                     width: 1,
                   ),
                 ),
-
-                child:
-                TextButton(
-                  onPressed: () {},
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   style: TextButton.styleFrom(
                     primary: Colors.black,
                   ),
                   child: const Text(
                     'Go Back',
                     style: TextStyle(fontSize: 24),
-
                   ),
-
-                )
-            ),
-
-
-
+                )),
           ],
         ),
-
-
-
       ),
     );
   }
 }
-
