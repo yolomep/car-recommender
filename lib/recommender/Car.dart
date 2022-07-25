@@ -110,7 +110,7 @@ class Car {
   Car.fromCSV(List<String> vals) {
     //cid, name, make, model, year, mpg, transmission, doors, submodel, msrp, rating, con r, photo
     cid = int.parse(vals[0]);
-    _name = vals[1];
+    _name = vals[1].replaceAll("\"", "");
     make = vals[2];
     model = vals[3];
     year = vals[4];

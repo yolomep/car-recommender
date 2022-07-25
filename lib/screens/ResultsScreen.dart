@@ -61,11 +61,9 @@ class _ResultsScreenState extends State<ResultsScreen> {
             allCars.add(Car.fromCSV(line.split(",")));
           }
           catch(e) {
-            print(line);
-          }
 
+          }
         }
-        print(allCars);
         allCars
             .sort((a, b) => b.getScore(widget.data) - a.getScore(widget.data));
         currentCar = allCars[currentIndex];
