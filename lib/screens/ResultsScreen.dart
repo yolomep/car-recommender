@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
+import 'dart:developer';
 
 class ResultsScreen extends StatefulWidget {
   Car data;
@@ -56,8 +57,15 @@ class _ResultsScreenState extends State<ResultsScreen> {
     readData().then((options) {
       setState(() {
         for (String line in options.split("\n")) {
-          allCars.add(Car.fromCSV(line.split(",")));
+          try{
+            allCars.add(Car.fromCSV(line.split(",")));
+          }
+          catch(e) {
+            print(line);
+          }
+
         }
+        print(allCars);
         allCars
             .sort((a, b) => b.getScore(widget.data) - a.getScore(widget.data));
         currentCar = allCars[currentIndex];
