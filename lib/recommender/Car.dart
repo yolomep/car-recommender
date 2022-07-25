@@ -1,19 +1,23 @@
-import "package:csv/csv.dart";
+import "package:car_recommender/recommender/Mpg.dart";
+import 'package:flutter/src/material/slider_theme.dart';
 
 class Car {
   int? _cid;
   String? _make;
   String? _model;
   int? _year;
-  String? _mpg;
+  Mpg? _mpg;
   String? _transmission;
   int? _doors;
   String? _submodel;
-  double? _paidRating;
+  String? _paidRating;
   double? _reliableRating;
   String? _photo;
+  int? _price;
 
   int? get cid => _cid;
+
+  RangeValues get priceRange => null;
 
   set cid(int? cid) {
     _cid = cid;
@@ -37,9 +41,9 @@ class Car {
     _year = year;
   }
 
-  String? get mpg => _mpg;
+  Mpg? get mpg => _mpg;
 
-  set mpg(String? mpg) {
+  set mpg(Mpg? mpg) {
     _mpg = mpg;
   }
 
@@ -61,9 +65,9 @@ class Car {
     _submodel = submodel;
   }
 
-  double? get paidRating => _paidRating;
+  String? get paidRating => _paidRating;
 
-  set paidRating(double? paidRating) {
+  set paidRating(String? paidRating) {
     _paidRating = paidRating;
   } //rated by paid critics
 
@@ -79,9 +83,16 @@ class Car {
     _photo = photo;
   }
 
+  int? get price => _price;
+
+  set price(int? price) {
+    _price = price;
+  }
+
   Car(
       this._cid,
       this._make,
+      this._model,
       this._year,
       this._mpg,
       this._transmission,
@@ -92,15 +103,30 @@ class Car {
       this._photo);
 
   Car.fromCSV(List<dynamic> vals) {
+    List<String> mpgs = (vals[3] as String).replaceAll(RegExp(r'[A-Za-z]+'),'').split(";");
     cid = vals[0];
     make = vals[1];
+    model = vals[2];
     year = vals[2];
-    mpg = vals[3];
+    mpg = Mpg(int.parse(mpgs[0]), int.parse(mpgs[1]));
     transmission = vals[4];
     doors = vals[5];
     submodel = vals[6];
     paidRating = vals[7];
     reliableRating = vals[8];
     photo = vals[9];
+  }
+
+  Car.fromData({
+    make, model, year, mpgHighway, mpgCity, transmission, price, priceRange, rating
+  }){
+    _cid = 0;
+    _make = make;
+    _model = model;
+    _year = year;
+    _mpg = Mpg(mpgHighway, mpgCity);
+    _transmission = transmission;
+    _paidRating = rating;
+
   }
 }
