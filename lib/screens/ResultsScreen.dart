@@ -2,9 +2,10 @@ import 'package:car_recommender/recommender/Car.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
-import 'package:csv/csv.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
 
 class ResultsScreen extends StatefulWidget {
   Car data;
@@ -54,7 +55,11 @@ class _ResultsScreenState extends State<ResultsScreen> {
 
     readData().then((options) {
       setState(() {
-
+        for(String line in options.split("\n")) {
+          allCars.add(Car.fromCSV(line.split(",")));
+        }
+        allCars.sort((a, b) => b.getScore(widget.data) - a.getScore(widget.data));
+        currentCar = allCars[currentIndex];
       });
     });
   }
@@ -125,36 +130,39 @@ class _ResultsScreenState extends State<ResultsScreen> {
                     children: [
                       Container(margin: const EdgeInsets.all(5.0)),
                       Text(
-                        "Make:",
+                        "Make: ${currentCar.make}",
                         style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       Container(
                         margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
-                        "Model:",
+                        "Model: ${currentCar.submodel}",
                         style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       Container(
                         margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
-                        "Year:",
+                        "Year: ${currentCar.year}",
                         style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       Container(
                         margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
-                        "Rating:",
+                        "Rating: ${currentCar.paidRating}",
                         style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                       Container(
                         margin: const EdgeInsets.all(5.0),
                       ),
-                      Text(
-                        "Website Link: ",
+                      InkWell(
+                        child: Text(
+                        "Website Link: https://www.kbb.com/${currentCar.make}/${currentCar.model}/",
                         style: TextStyle(fontSize: 20.0, color: Colors.white),
+                        ),
+                          onTap: () => launchUrl(Uri.https("www.kbb.com", "${currentCar.make}/${currentCar.model}"))
                       ),
                     ],
                   ),
@@ -182,14 +190,28 @@ class _ResultsScreenState extends State<ResultsScreen> {
                     children: [
                       IconButton(
                           onPressed: () {
+                            setState(() {
+                              if(currentIndex != 0) {
+                                currentIndex--;
+                                currentCar = allCars[currentIndex];
+                              }
 
+                            });
                           },
                           icon: Icon(
                             FontAwesomeIcons.circleChevronLeft,
                             size: 50.0,
                           )),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              if(currentIndex != 5) {
+                                currentIndex++;
+                                currentCar = allCars[currentIndex];
+                              }
+
+                            });
+                          },
                           icon: Icon(
                             FontAwesomeIcons.circleChevronRight,
                             size: 50.0,
