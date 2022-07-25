@@ -18,6 +18,46 @@ class ResultsScreen extends StatefulWidget {
 
 class _ResultsScreenState extends State<ResultsScreen> {
   List<Car> allCars = [];
+  Car currentCar = Car.fromData();
+  int currentIndex = 0;
+
+  Future<String> readData() async {
+    try {
+      return await rootBundle.loadString('data/car.csv');
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              // Retrieve the text the that user has entered by using the
+              // TextEditingController.
+
+                title: Text("Error!"),
+                content: Text(
+                    "The data files have been deleted or cannot be accessed. Please try reinstalling the app again."),
+                actions: [
+                  TextButton(
+                    child: Text("Ok"),
+                    onPressed: () {
+                      exit(0);
+                    },
+                  )
+                ]);
+          });
+      return "Dummy";
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    readData().then((options) {
+      setState(() {
+
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +91,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                       borderRadius: BorderRadius.circular(90),
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
                           FontAwesomeIcons.magnifyingGlass,
@@ -67,11 +107,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                   ),
                   Container(
                     margin: EdgeInsets.all(10),
-                    child: Icon(
-                      FontAwesomeIcons.car,
-                      color: Colors.white,
-                      size: 250.0,
-                    ),
+                    child: Image.network(currentCar.photo!)
                   ),
                 ],
               ),
@@ -117,7 +153,7 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         margin: const EdgeInsets.all(5.0),
                       ),
                       Text(
-                        "Website Link:",
+                        "Website Link: ",
                         style: TextStyle(fontSize: 20.0, color: Colors.white),
                       ),
                     ],
@@ -142,10 +178,12 @@ class _ResultsScreenState extends State<ResultsScreen> {
                       color: Color(0xFFD9D9D9),
                       borderRadius: BorderRadius.circular(180)),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+
+                          },
                           icon: Icon(
                             FontAwesomeIcons.circleChevronLeft,
                             size: 50.0,
